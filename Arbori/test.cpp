@@ -47,8 +47,8 @@ arbore& arbore::operator<<(int n)
     }
     return *this;
 }
-/*
-bintree& bintree::operator>>(int &n)
+
+arbore& arbore::operator>>(int &n)
 {
     nod *p;
     if(!vida()){
@@ -59,7 +59,6 @@ bintree& bintree::operator>>(int &n)
     }
     return *this;
 }
-*/
 
 int arbore::vida(){return root==NULL;}
 
@@ -115,8 +114,9 @@ int main()
 
     int v[] = {1, 23, 3, 142, 14, 57};
     for(int i = 0; i < sizeof(v); i++)
-        ar<<v[i];
+        ar<<(v[i]);
 
     ar.display();
+
 }
 
