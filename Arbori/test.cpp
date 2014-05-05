@@ -51,12 +51,14 @@ arbore& arbore::operator<<(int n)
 arbore& arbore::operator>>(int &n)
 {
     nod *p;
+    /*
     if(!vida()){
-            n=v->data;
-            p=v;
-            v=v->leg;
+            n=root->data;
+            p=root;
+            v=root->leg;
             delete p;
     }
+    */
     return *this;
 }
 
