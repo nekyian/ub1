@@ -27,6 +27,7 @@ class arbore
 arbore::arbore()
 {
     root=NULL;
+    cout << "am creeat arborele\n";
 }
 
 arbore::~arbore()
@@ -38,13 +39,17 @@ arbore::~arbore()
 
 arbore& arbore::operator<<(int n)
 {
-    nod *p;
-    if((p=new nod)!=NULL){
-            p->data=n;
-            p->left=NULL;
-            p->right=NULL;
-            insert(root, p);
-    }
+    New = new nod;
+    New->data = n;
+    New->left = NULL;
+    New->right = NULL;
+    cout << "am creat noul nod";
+
+    if(root == NULL)
+        root = New;
+    else
+        insert(root, New);
+
     return *this;
 }
 
@@ -114,11 +119,21 @@ int main()
 
     arbore ar;
 
+    ar.display();
+
+    cout << "incarcam arborele\n";
+
     int v[] = {1, 23, 3, 142, 14, 57};
-    for(int i = 0; i < sizeof(v); i++)
+    for(int i = 0; i < 6; i++) {
+        cout << v[i] << endl;
         ar<<(v[i]);
+    }
+
+    cout << "afisam arborele\n";
 
     ar.display();
+
+    return 0;
 
 }
 
