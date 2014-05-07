@@ -24,7 +24,7 @@ int main()
 
     Arbore<char> arb2; // incercam cu char deocamdata fiind tip fundamental
     
-    // introducem 'g' ca radacina
+    // 
     
     char v[] = {'z', 'c', 't', 'd','r','5','q','b'};  // delimitare cu ' pentru vectori de char
     
