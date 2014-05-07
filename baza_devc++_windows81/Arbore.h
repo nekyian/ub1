@@ -1,4 +1,5 @@
 #include <iostream>
+#include <typeinfo>
 //#include <iomanip>
 //#include <assert.h> 
 //
@@ -7,31 +8,39 @@
 using namespace std;
 
 template <class T>
+class Nod
+{
+	public:
+		
+	T data;
+	Nod<T> *left;
+	Nod<T> *right;
+	
+	template<typename ArboreType>
+	friend class Arbore;
+
+};
+
+template <class T>
 class Arbore
 {
-
-        typedef struct bst
-        {
-            T data;
-            struct bst *left, *right;
-        } node;
-
-        node *root, *New, *temp, *parent;
-
-    public:
+	
+	public:	
+		Nod<T> *root, *New;
+    
         Arbore()
-        {
+        {		
             root = NULL;
         }
 
         //void create();
         void create (T const& element);
         void operator+(T const& element);
-        void insert(node *root, node *New);
+		void insert(Nod<T> *root, Nod<T> *New);
 
         void afiseaza();
-        void inorder(node *temp);
-        void postorder(node *temp);
+        void inorder(Nod<T> *temp);
+        void postorder(Nod<T> *temp);
 
 };
 
@@ -43,9 +52,10 @@ void Arbore<T>::create(T const& element)
 //radacina si elementele. 
 
 {
-    New = new node;
-    New->left = NULL;
-    New->right = NULL;
+	
+	New = new Nod<T>;
+	New->left = NULL;
+	New->right = NULL;
     
     //cout << "\n introduceti primul element al arborelui: \n";
     //cin >> New->data;
@@ -68,7 +78,7 @@ void Arbore<T>::operator+(T const& element)
     // cream un Nod nou din elementul primit
 
     
-    New = new bst;
+    New = new Nod<T>;
     New->data = element;
     New->left = NULL;
     New->right = NULL;
@@ -80,7 +90,7 @@ void Arbore<T>::operator+(T const& element)
 }
 
 template <class T>
-void Arbore<T>::insert(node *root, node *New)
+void Arbore<T>::insert(Nod<T> *root, Nod<T> *New)
 {
     // daca valoarea noului element e mai mica decat valoarea radacinii creem un subarbore stang
     if(New->data < root->data)
@@ -139,7 +149,7 @@ void Arbore<T>::afiseaza()
 }
 
 template <class T>
-void Arbore<T>::inorder(node *temp)
+void Arbore<T>::inorder(Nod<T> *temp)
 {
     if(temp != NULL)
     {
@@ -150,7 +160,7 @@ void Arbore<T>::inorder(node *temp)
 }
 
 template <class T>
-void Arbore<T>::postorder(node *temp)
+void Arbore<T>::postorder(Nod<T> *temp)
 {
     if(temp != NULL)
     {
