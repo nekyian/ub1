@@ -6,11 +6,11 @@ template <class T>
 class Arbore
 {
 
-    typedef struct bst
+    struct node
     {
         T data;
-        struct bst *left, *right;
-    }node;
+        struct node *left, *right;
+    };
 
     node *root, *New, *temp, *parent;
 
@@ -19,7 +19,7 @@ class Arbore
         root = NULL;
     }
     
-    void create();
+    Arbore(T const& element);
     void operator+(T const& element);
 	void insert(node *root, node *New);
 	
@@ -30,21 +30,14 @@ class Arbore
 };
 
 template <class T>
-void Arbore<T>::create()
+Arbore<T>::Arbore(T const& element)
 {
 	New = new node;
-    New->left = NULL;
+    New->data = element;
+	New->left = NULL;
     New->right = NULL;
-
-    cout << "\n introduceti primul element al arborelui: \n";
-    cin >> New->data;
-
-    if(root == NULL) {
-    	root = New;
-    	cout << "am creeat radacina arborelui, cu valoare " << New->data << endl;
-    }
-    else
-        insert(root, New);
+    
+    root = New;
 }
 
 // operator de inserare cheie in Arbore
@@ -52,19 +45,26 @@ template <class T>
 void Arbore<T>::operator+(T const& element)
 {
     // cream un Nod nou din elementul primit
-    New = new bst;
+    New = new node;
     New->data = element;
     New->left = NULL;
     New->right = NULL;
+    cout << root << endl;
     cout << "Am creeat un nod nou:\ndata: " << element << endl;
+    
+//    root = New;
         
-    // inseram Nodul nou creat in Arborele principal
-    insert(root, New);
+    if(root == NULL)
+    	// inseram Nodul nou creat ca radacina
+		root = New;
+    else
+    	// inseram Nodul nou creat in Arborele principal
+        insert(root, New);
 }
 
 template <class T>
 void Arbore<T>::insert(node *root, node *New)
-{
+{	
     // daca valoarea noului element e mai mica decat valoarea radacinii creem un subarbore stang
     if(New->data < root->data)
     {
@@ -92,7 +92,6 @@ void Arbore<T>::insert(node *root, node *New)
         }
             
     }
-
 }
 
 template <class T>
