@@ -1,3 +1,4 @@
+#include <iostream>
 //#include <string> http://www.cplusplus.com/reference/string/
 #include "Arbore.h"
 

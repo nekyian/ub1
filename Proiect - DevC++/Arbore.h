@@ -1,10 +1,10 @@
 
 //#include <iomanip>
-//#include <assert.h>
+//#include <assert.h> 
 //
 //
 #include <iostream>
-#include <curses.h>
+#include <conio.h>
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
@@ -25,7 +25,7 @@ class Arbore
 
 
 
-class node
+class node  
 		{
 			public:
 				T data;
@@ -50,18 +50,18 @@ class node
         }
         //void create();
         void create (T element);
-
+        
         void operator+(T const& element);
         void insert(node *root, node *New);
-
+        
         //////
         T remove(node *&p);
         //T operator -(T const& element);
         T operator -(T);
         void delnode(node*&,T);
         /////
-
-
+        
+        
 
         void afiseaza();
         void inorder(node *temp);
@@ -75,18 +75,18 @@ template <class T>
 void Arbore<T>::create(T element)
 
 //modificata (deocamdata) pentru testare sa preia direct v[0] ca radacina. in varianta finala vom citi pe rand
-//radacina si elementele.
+//radacina si elementele. 
 
 {
     New = new node;
     New->left = NULL;
     New->right = NULL;
-
+    
     //cout << "\n introduceti primul element al arborelui: \n";
     //cin >> New->data;
-
+    
     New->data = element;
-
+    
     if(root == NULL)
     {
         root = New;
@@ -101,7 +101,7 @@ void Arbore<T>::operator+(T const& element)
 {
     // cream un Nod nou din elementul primit
 
-
+    
 //    New = new bst;
     New = new node;
     New->data = element;
@@ -110,7 +110,7 @@ void Arbore<T>::operator+(T const& element)
     cout << " \n Am creeat un nod nou:\ndata: " << element << endl;
     // inseram Nodul nou creat in Arborele principal
     insert(root, New);
-
+    
 
 }
 
@@ -123,7 +123,7 @@ void Arbore<T>::insert(node *root, node *New)
         if(root->left == NULL)
         {
             root->left = New;
-            cout << " \n am introdus nodul nou = copil stang al lui " <<" "<<root->data;
+            cout << " \n am introdus nodul nou = copil stang al lui " <<" "<<root->data; 
 			//afiseaza explicit unde il introduce
         }
         else
@@ -205,7 +205,7 @@ void Arbore<T>::postorder(node *temp)
 
  template <class T> void Arbore<T>::delnode(node*& root,T element)
 {
-	// to do: seg fault dupa stergerea radacinii si afisarea finala, probabil trebuie verificat/initializat
+	// to do: seg fault dupa stergerea radacinii si afisarea finala, probabil trebuie verificat/initializat 
 	// ceva cu NULL inainte/dupa delete;
 	// + comentat aici.
     node *tmp;
@@ -248,12 +248,12 @@ template <class T> T Arbore<T>::remove(node *&p)
 
 
 
-template <class T> T Arbore<T>::operator-(T element) //(Arbore - element)
+template <class T> T Arbore<T>::operator-(T element) //(Arbore - element)  
 //to do: parametrul
 
-
+                                             
 {
-
+	
     node *nou;
     nou=root;
     delnode(nou,element);
@@ -262,10 +262,27 @@ template <class T> T Arbore<T>::operator-(T element) //(Arbore - element)
 
 
 
-// to do
+// to do (Cosmin)
 
 //Arbore1 + Arbore2 scoase elementele in inordine din 2 si introduse in 1 conform cerintei (probabil cu un v[])
 
 //Arbore1 - Arbore2 la fel
 //Arbore1 = Arbore2  recursiv + o functie suplimentara
+
+//+ & -
+
+
+// to do (Dan)
+
+//==; <, <=, >, >= (operatorii de ordine întorc 1 (sau 0) conform ordonarii
+//lexicografice a sirurilor ordonate care rezulta prin parcurgerea în inordine a
+//operanzilor, cu repetarea fiecarei chei conform contorului);
+
+
+
+
+
+
+
+
 
