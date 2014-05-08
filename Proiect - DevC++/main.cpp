@@ -1,29 +1,36 @@
-#include <iostream>
-#include <string>
+//#include <string> http://www.cplusplus.com/reference/string/
 #include "Arbore.h"
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+//int main(int argc, char** argv)
+//deocamdata nu pasam argumente cu argc si argv
 
-int main(int argc, char** argv) {
+
+int main()
+{
+
+
+    Arbore<char> arb2; // incercam cu char deocamdata fiind tip fundamental
+	char sters,opt;
 	
-//	Arbore<int> arb;
-//	
-//	arb.create();
-//	
-//	int v[] = {2, 23, 3, 142, 14, 57};
-//    for(int i = 0; i < 6; i++)
-//        arb + (v[i]);
-//        
-//    arb.afiseaza();
+    char v[] = {'z', 'c', 't', 'd','r','5','q','b'};  // delimitare cu ' pentru vectori de char
+    arb2.create(v[0]); //radacina este primul element
+    for(int i = 1; i < sizeof(v); i++) 
+		arb2+v[i];
+		
+    arb2.afiseaza();
+    cout << "\n doriti sa stergeti un element? y/n \n";
+    cin >> opt;
+    if (opt=='y') 
+	{
+    	cout << "\n introduceti elementul de sters \n";
+    	cin >> sters;
+    	arb2-sters;
+    	    }
     
-    Arbore<string> arb2;
+    arb2.afiseaza();
     
-    arb2.create();
-    int v[] = {"a", "c", "b", "d"};
-    for(int i = 0; i < 4; i++)
-    	arb2 + v[i];
-	
-	arb2.afiseaza();
-	
-	return 0;
+    return 0;
 }
+
+
+
