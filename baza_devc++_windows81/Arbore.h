@@ -1,61 +1,86 @@
-#include <iostream>
-#include <typeinfo>
+
 //#include <iomanip>
 //#include <assert.h> 
 //
 //
+#include <iostream>
+#include <conio.h>
+#include <stdio.h>
+#include <malloc.h>
+#include <string.h>
+#include <stdlib.h>
 
 using namespace std;
 
 template <class T>
-class Nod
-{
-	public:
-		
-	T data;
-	Nod<T> *left;
-	Nod<T> *right;
-	
-	template<typename ArboreType>
-	friend class Arbore;
 
-};
 
-template <class T>
 class Arbore
 {
-	
-	public:	
-		Nod<T> *root, *New;
-    
+//     typedef struct bst
+//    {
+//        T data;
+//        struct bst *left, *right;
+//    }node;
+
+
+
+class node  
+		{
+			public:
+				T data;
+				node *right,*left;
+				node(){right = NULL; left = NULL;}
+				node(const T& d){right = NULL; left = NULL; data = d;}
+		};
+
+
+
+        node *root,*New;
+		//*New, *temp, *parent;
+
+    public:
         Arbore()
-        {		
+        {
             root = NULL;
         }
-
+        ~Arbore()
+		{
+            root = NULL;
+        }
         //void create();
-        void create (T const& element);
+        void create (T element);
+        
         void operator+(T const& element);
-		void insert(Nod<T> *root, Nod<T> *New);
+        void insert(node *root, node *New);
+        
+        //////
+        T remove(node *&p);
+        //T operator -(T const& element);
+        T operator -(T);
+        void delnode(node*&,T);
+        /////
+        
+        
 
         void afiseaza();
-        void inorder(Nod<T> *temp);
-        void postorder(Nod<T> *temp);
+        void inorder(node *temp);
+        void postorder(node *temp);
 
 };
 
 template <class T>
 //void Arbore<T>::create()
-void Arbore<T>::create(T const& element)
+//void Arbore<T>::create(T const& element)
+void Arbore<T>::create(T element)
 
 //modificata (deocamdata) pentru testare sa preia direct v[0] ca radacina. in varianta finala vom citi pe rand
 //radacina si elementele. 
 
 {
-	
-	New = new Nod<T>;
-	New->left = NULL;
-	New->right = NULL;
+    New = new node;
+    New->left = NULL;
+    New->right = NULL;
     
     //cout << "\n introduceti primul element al arborelui: \n";
     //cin >> New->data;
@@ -67,8 +92,7 @@ void Arbore<T>::create(T const& element)
         root = New;
         cout << " \n am creeat radacina arborelui, cu valoare " << New->data << endl;
     }
-    else;
-        insert(root, New);
+    else insert(root, New);
 }
 
 // operator de inserare cheie in Arbore
@@ -78,7 +102,8 @@ void Arbore<T>::operator+(T const& element)
     // cream un Nod nou din elementul primit
 
     
-    New = new Nod<T>;
+//    New = new bst;
+    New = new node;
     New->data = element;
     New->left = NULL;
     New->right = NULL;
@@ -90,7 +115,7 @@ void Arbore<T>::operator+(T const& element)
 }
 
 template <class T>
-void Arbore<T>::insert(Nod<T> *root, Nod<T> *New)
+void Arbore<T>::insert(node *root, node *New)
 {
     // daca valoarea noului element e mai mica decat valoarea radacinii creem un subarbore stang
     if(New->data < root->data)
@@ -125,33 +150,36 @@ void Arbore<T>::insert(Nod<T> *root, Nod<T> *New)
 }
 
 template <class T>
-void Arbore<T>::afiseaza() 
+void Arbore<T>::afiseaza() //deocamdata doar inordine()
 // TO DO: afisare gen ((a)(c)(e)) etc
 {
     if(root == NULL)
         cout << "arborele nu este creat";
     else
     {
-        cout << "alegeti tipul de parcurgere dorit:\n1. inordine\n2.postordine\n";
-        int tip;
-        cin >> tip;
-        cout << "\n arborele este: ";
-        switch(tip)
-        {
-        case 1:
-            inorder(root);
-            break;
-        case 2:
-            postorder(root);
-            break;
-        }
+    	cout << "\n";
+    	inorder(root);
+    	cout << "\n";
+//        cout << "\n alegeti tipul de parcurgere dorit:\n\n 1.inordine\n2.postordine\n";
+//        int tip;
+//        cin >> tip;
+//        cout << "\n arborele este: " << " ";
+//        switch(tip)
+//        {
+//        case 1:
+//            inorder(root);
+//            break;
+//        case 2:
+//            postorder(root);
+//            break;
+//        }
     }
 }
 
 template <class T>
-void Arbore<T>::inorder(Nod<T> *temp)
+void Arbore<T>::inorder(node *temp)
 {
-    if(temp != NULL)
+	if(temp != NULL)
     {
         inorder(temp->left);
         cout << " " << temp->data;
@@ -160,7 +188,7 @@ void Arbore<T>::inorder(Nod<T> *temp)
 }
 
 template <class T>
-void Arbore<T>::postorder(Nod<T> *temp)
+void Arbore<T>::postorder(node *temp)
 {
     if(temp != NULL)
     {
@@ -171,4 +199,73 @@ void Arbore<T>::postorder(Nod<T> *temp)
 }
 
 
+
+
+
+
+ template <class T> void Arbore<T>::delnode(node*& root,T element)
+{
+	// to do: seg fault dupa stergerea radacinii si afisarea finala, probabil trebuie verificat/initializat 
+	// ceva cu NULL inainte/dupa delete;
+	// + comentat aici.
+    node *tmp;
+    if (!root) cout<<"\n nodul nu exista \n";
+    else if (element<root->data) delnode(root->left,element);
+    else if (element>root->data) delnode(root->right,element);
+    else
+    {
+        tmp=root;
+        if (!tmp->left)
+        {
+            root=tmp->right;
+            delete(tmp);
+        }
+        else if(!tmp->right)
+        {
+            root=tmp->left;
+            delete(tmp);
+        }
+        else
+            root->data=remove(root->left);
+    }
+}
+template <class T> T Arbore<T>::remove(node *&p)
+// completare la delnode pt cazul III cand un nod are doi copii
+
+{
+    if (p->right)
+        return remove(p->right);
+    else
+    {
+        node *q=p;
+        T element=q->data;
+        p=p->right;
+        delete(q);
+        return element;
+    }
+}
+
+
+
+
+template <class T> T Arbore<T>::operator-(T element) //(Arbore - element)  
+//to do: parametrul
+
+                                             
+{
+	
+    node *nou;
+    nou=root;
+    delnode(nou,element);
+
+}
+
+
+
+// to do
+
+//Arbore1 + Arbore2 scoase elementele in inordine din 2 si introduse in 1 conform cerintei (probabil cu un v[])
+
+//Arbore1 - Arbore2 la fel
+//Arbore1 = Arbore2  recursiv + o functie suplimentara
 
