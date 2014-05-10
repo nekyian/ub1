@@ -37,7 +37,10 @@ class node
 
 
         node *root,*New;
-		//*New, *temp, *parent;
+
+        // 2 liste pentru comparatii(supraincarcare ==, <, >, etc.)
+        T lista1[25], lista2[25];
+        T *l1 = lista1; T*l2 = lista2;
 
     public:
         Arbore()
@@ -66,6 +69,12 @@ class node
         void afiseaza();
         void inorder(node *temp);
         void postorder(node *temp);
+
+        ////////////
+        // operatori de comparatie
+        ////////////
+        bool Arbore<T>::operator==(Arbore<T> *arb2);
+        *T Arbore<T>::lista(Arbore *arb);
 
 };
 
@@ -177,12 +186,15 @@ void Arbore<T>::afiseaza() //deocamdata doar inordine()
 }
 
 template <class T>
-void Arbore<T>::inorder(node *temp)
+void Arbore<T>::inorder(node *temp, T *lista == NULL)
 {
 	if(temp != NULL)
     {
         inorder(temp->left);
         cout << " " << temp->data;
+        // daca am primit si un pointer la o lista la apelare introducem fiecare element in lista;
+        if(lista != NULL)
+            lista[] = temp->data;
         inorder(temp->right);
     }
 }
@@ -278,7 +290,29 @@ template <class T> T Arbore<T>::operator-(T element) //(Arbore - element)
 //lexicografice a sirurilor ordonate care rezulta prin parcurgerea în inordine a
 //operanzilor, cu repetarea fiecarei chei conform contorului);
 
+template <class T>
+bool Arbore<T>::operator==(Arbore<T> *arb2)
+{
+    // alcatuim un vector din arbore prin parcurgerea inordine
+    T *lista1 = lista(arb1);
+    T *lista2 = lista(arb2);
 
+    // iteram prin cele 2 liste
+        //returnam FALSE daca un element difera
+        //returnam TRUE in alt caz
+    for(i = 0; i < sizeof(lista1)/sizeof(T))
+        if(lista1[i] != lista2[i]) return FALSE;
+
+    return TRUE;
+
+
+}
+
+template <class T>
+*T Arbore<T>::lista(Arbore *arb)
+{
+    inorder(arb);
+}
 
 
 
