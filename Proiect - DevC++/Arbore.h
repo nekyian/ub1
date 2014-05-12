@@ -60,7 +60,7 @@ class node
         //T operator -(Arbore<T> arb);
 
         void afiseaza();
-        void inorderM(node *temp);
+        void inorderM(node *temp,int &size,T *inord);
         void inorder(node *temp);
         void postorder(node *temp);
         int size; //nr de noduri - folosit de inordineM
@@ -198,12 +198,12 @@ void Arbore<T>::inorder(node *temp)
 
 
 template <class T>
-void Arbore<T>::inorderM(node *root) //inordine iterativa pentru facilitarea inserarii elementelor in inord[] 
+void Arbore<T>::inorderM(node *root,int &size,T *inord) //inordine iterativa pentru facilitarea inserarii elementelor in inord[] 
 
 {
 	
 	size=0;
-	inord[size]={};//initializare totala array cu 0 - da warning cateodata
+	inord[size]={};
 
 // //debug garbage
 //	cout<<"\n";
@@ -327,8 +327,9 @@ template <class T>
 Arbore<T> Arbore<T>::  operator- (Arbore<T> arbore1) 
 {
 
-inorderM(arbore1.root);
-for (int i=1;i<=size;i++) *this-inord[i];
+inorderM(arbore1.root,arbore1.size,arbore1.inord);          // dupa inorderM(...) 
+							         //arbore1.inord[] contine parcurgerea in inordine	
+for (int i=1;i<=arbore1.size;i++) *this-arbore1.inord[i];    //arbore1.size=nr de noduri
 return *this;
 
 }
@@ -337,8 +338,8 @@ template <class T>
 Arbore<T> Arbore<T>::  operator+ (Arbore<T> arbore1) 
 {
 
-inorderM(arbore1.root);
-for (int i=0;i<=size;i++) *this+inord[i];
+inorderM(arbore1.root,arbore1.size,arbore1.inord);
+for (int i=0;i<=arbore1.size;i++) *this+arbore1.inord[i];
 return *this;
 
 }
