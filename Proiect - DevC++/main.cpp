@@ -84,9 +84,6 @@ cout<<"\n arb5-arb6 = ";
 cout<<"\n";
    arb4.afiseaza();
    
-  
-  
- 
    
     
     
