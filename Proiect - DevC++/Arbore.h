@@ -10,34 +10,22 @@
 //#include <string.h>
 //#include <stdlib.h>
 
+#include "Nod.h"
+
+
 using namespace std;
 
 template <class T>
-
-
 class Arbore
 {
 
-class node
-		{
-			public:
-				T data;
-				node *right,*left;
-				node(){right = NULL; left = NULL;}
-				node(const T& d){right = NULL; left = NULL; data = d;}
-		};
-
-
     public:
-    	node *root,*New;
+    	node<T> *root, *New;
 
         Arbore()
         {
             root = NULL;
             size=0;
-
-
-
         }
         void create (T element);
 
@@ -48,21 +36,21 @@ class node
         //Arbore<T> operator+(Arbore<T> arbore1,T element); (TO DO:friend)
     	Arbore <T> operator- (Arbore<T> arbore1);
 
-        void insert(node *root, node *New);
+        void insert(node<T> *root, node<T> *New);
 
         //////
-        T remove(node *&p);
+        T remove(node<T> *&p);
         //T operator -(T const& element);
         T operator -(T);
-        void delnode(node*&,T);
+        void delnode(node<T>*&,T);
         /////
 
         //T operator -(Arbore<T> arb);
 
         void afiseaza();
-        void inorderM(node *temp,int &size,T *inord);
-        void inorder(node *temp);
-        void postorder(node *temp);
+        void inorderM(node<T> *temp,int &size,T *inord);
+        void inorder(node<T> *temp);
+        void postorder(node<T> *temp);
         int size; //nr de noduri - folosit de inordineM
         T inord[]; // vector ce contine pargurgerea in inordine
 
@@ -80,7 +68,7 @@ void Arbore<T>::create(T element)
 //radacina si elementele.
 
 {
-    New = new node;
+    New = new node<T>;
     New->left = NULL;
     New->right = NULL;
 
@@ -106,7 +94,7 @@ void Arbore<T>::operator+(T const& element)
 
 
 //    New = new bst;
-    New = new node;
+    New = new node<T>;
     New->data = element;
     New->left = NULL;
     New->right = NULL;
@@ -119,7 +107,7 @@ void Arbore<T>::operator+(T const& element)
 }
 
 template <class T>
-void Arbore<T>::insert(node *root, node *New)
+void Arbore<T>::insert(node<T> *root, node<T> *New)
 {
     // daca valoarea noului element e mai mica decat valoarea radacinii creem un subarbore stang
     if(New->data < root->data)
@@ -188,7 +176,7 @@ void Arbore<T>::afiseaza() //deocamdata doar inordine()
 
 
 template <class T>
-void Arbore<T>::inorder(node *temp)
+void Arbore<T>::inorder(node<T> *temp)
 {
 	if(temp != NULL)
     {
@@ -201,8 +189,8 @@ void Arbore<T>::inorder(node *temp)
 
 
 template <class T>
-void Arbore<T>::inorderM(node *root,int &size,T *inord) //inordine iterativa pentru facilitarea inserarii elementelor in inord[]
-
+void Arbore<T>::inorderM(node<T> *root,int &size,T *inord)
+//inordine iterativa pentru facilitarea inserarii elementelor in inord[]
 {
 
 	size=0;
@@ -214,7 +202,7 @@ void Arbore<T>::inorderM(node *root,int &size,T *inord) //inordine iterativa pen
 //	cout <<"\n inord inainte de inordineM este: "<<"\n";
 //	for (int i=0; i<=size; i++) cout <<inord[i];
 //	cout<<"\n";
-    node* current,*pre;
+    node<T>* current,*pre;
     current=root;
     while(current!=NULL) {
         if(current->left==NULL) {
@@ -253,7 +241,7 @@ void Arbore<T>::inorderM(node *root,int &size,T *inord) //inordine iterativa pen
 
 
 template <class T>
-void Arbore<T>::postorder(node *temp)
+void Arbore<T>::postorder(node<T> *temp)
 {
     if(temp != NULL)
     {
@@ -265,12 +253,12 @@ void Arbore<T>::postorder(node *temp)
 
 
 
- template <class T> void Arbore<T>::delnode(node*& root,T element)
+template <class T> void Arbore<T>::delnode(node<T>*& root,T element)
 {
 
 	// fixed lipsea 'new' pentru delete-ul din remove()
 	// TO DO segfault la ultimul element,cand stergem ultimul element
-    node *tmp;
+    node<T> *tmp;
     if (!root) cout<<"\n nodul nu exista \n";
     else if (element<root->data) delnode(root->left,element);
     else if (element>root->data) delnode(root->right,element);
@@ -291,15 +279,14 @@ void Arbore<T>::postorder(node *temp)
             root->data=remove(root->left);
     }
 }
-template <class T> T Arbore<T>::remove(node *&p)
+template <class T> T Arbore<T>::remove(node<T> *&p)
 // completare la delnode pt cazul III cand un nod are doi copii
-
 {
     if (p->right)
         return remove(p->right);
     else
     {
-        node *q = p ;
+        node<T> *q = p ;
         T element=q->data;
         p=p->right;
         delete(q);
@@ -316,7 +303,7 @@ template <class T> T Arbore<T>::operator-(T element) //(Arbore - element)
 
 {
 
-    node *nou;
+    node<T> *nou;
     nou=root;
     delnode(nou,element);
 

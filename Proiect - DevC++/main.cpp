@@ -47,20 +47,23 @@ int main()
 //
 //  arb2.afiseaza();
 //
-   cout<<"\n arb1: ";
-   cout<<"\n";
-   arb1.afiseaza();
-   cout<<"\n arb2: ";
-   cout<<"\n";
-   arb2.afiseaza();
-   cout<<"\n arb1+arb2 = ";
-   cout<<"\n";
-   arb3=arb1+arb2;
-   arb3.afiseaza();
+    cout<<"\n arb1: ";
+    cout<<"\n";
+    arb1.afiseaza();
+    cout<<"\n arb2: ";
+    cout<<"\n";
+    arb2.afiseaza();
+    cout<<"\n arb1+arb2 = ";
+    cout<<"\n";
+    arb3=arb1+arb2;
+    arb3.afiseaza();
 
+    cout << "---------------" << endl;
 
+    //testare arb5-arb6
 
- //testare arb5-arb6
+    cout << "testare arb5-arb6" << endl;
+
     char v5[] = {'d', 'e', 'f', 'a','b','c','7'};  // delimitare cu ' pentru vectori de char
     arb5.create(v5[0]); //radacina este primul element
     for(int i = 1; i < sizeof(v5); i++)
@@ -71,19 +74,22 @@ int main()
     for(int i = 1; i < sizeof(v6); i++)
 
 
-		arb6+v6[i];
-cout<<"\n arb5: ";
-cout<<"\n";
-   arb5.afiseaza();
-cout<<"\n arb6: ";
-cout<<"\n";
-   arb6.afiseaza();
+    arb6+v6[i];
+    cout<<"\n arb5: ";
+    cout<<"\n";
+    arb5.afiseaza();
+    cout<<"\n arb6: ";
+    cout<<"\n";
+    arb6.afiseaza();
 
-   arb4=arb5-arb6;
-cout<<"\n arb5-arb6 = ";
-cout<<"\n";
-   arb4.afiseaza();
+    cout << "---------------" << endl;
 
+    arb4=arb5-arb6;
+    cout<<"\n arb5-arb6 = ";
+    cout<<"\n";
+    arb4.afiseaza();
+
+    cout << "---------------" << endl;
 
     //afisare comparatie == 2 arbori
 
