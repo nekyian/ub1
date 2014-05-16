@@ -92,15 +92,22 @@ cout<<"\n";
    c+arb4;  
    arb4.afiseaza();
    
+//Arbore<int> arb9 = 2;
+//cout << "\n initializare care cheama constructorul de initializare \n";
+//cout <<" \n int arb9 = 2; \n \n arb9 = \n";          
+//arb9.afiseaza(); 
+   
+   
    
    arb7 = 'W'; 
-   cout << "\n initializare arb7 = 'W' \n \n arb7 = \n";          
+   cout << "\n initializare care cheama operatorul de asignare  \n";
+   cout << "\n char arb7; \n arb7 = 'W'; \n \n arb7 = \n";          
    arb7.afiseaza(); 
  
  
-   cout << "\n arb8 = arb4 \n \n arb8 = \n";
-   arb8=arb4; //TODO
-   arb8.afiseaza();
+//   cout << "\n arb8 = arb4 \n \n arb8 = \n";
+//   arb8=arb4; //TODO
+//   arb8.afiseaza();
    
    
    
@@ -108,7 +115,7 @@ cout<<"\n";
     int vx[5] = {1, 2, 3, 4, 5};
     arbx.create(vx[0]);
     arby.create(vx[0]);
-    for(int i = 1; i < (sizeof(vx) / sizeof(int)); i++) {
+    for(unsigned int i = 1; i < (sizeof(vx) / sizeof(int)); i++) {
         arbx + vx[i];
         arby + vx[i];
     }
