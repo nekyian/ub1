@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Nod.h"
+
+
 using namespace std;
 
 
@@ -15,74 +17,70 @@ class Arbore
     	
         Arbore()
         {
+        	
             root = NULL;
             size=0;
             
         }
 
+
+//    TODO constructor de copiere arbore1=arbore2
+//         constructor de initializare, sa aiba sens initializarea directa
+//     Arbore<int> = 5;
      
-//     Arbore<T> & operator= (Arbore<T> const & arb) 
+//     Arbore<T>  (Arbore<T> const & arb) 
 //     {
 //     
-//    TODO constructor de copiere arbore1=arbore2
-//    TODO constructor de initializare, sa aiba sens initializarea directa
-//     Arbore<int> = 5;
+//
 //	 
 //	 }
      
          
-        Arbore<T> & operator= (T const& element)  
-		//asignare
+        Arbore<T> & operator= (T const& element);  
+	    //asignare
 		//sa aiba sens 
 		//Arbore<char> Arbore1;
 		//Arbore1 = 'a';
-	
 		        
-        {
-        	
-    New = new node<T>;
-    New->left = NULL;
-    New->right = NULL;
-    New->data = element;
-    root = New;
-    return *this;
-        	
-    	}
+        
  		 
-       
-        
-        
-        void create (T element);
-        
-        void operator+(T const& element);    
+		//Arbore<T>& operator= (const Arbore<T>& arbore1); //const           
         
         Arbore <T> operator+ (Arbore<T> arbore1);
         Arbore <T> operator- (Arbore<T> arbore1);
-    	
+        
+    	void create (T element);
         void insert(node<T> *root, node<T> *New);
         
         
-        T remove(node<T> *&p);
+        void operator+(T const& element);
         T operator -(T);
-        void delnode(node<T>*&,T);
-        void afiseaza();
-        
-        void inorderM(node<T> *temp,int &size,T *inord);
-        
-        void inorder(node<T> *temp);
-        void postorder(node<T> *temp);
-        
-        int size; //nr de noduri - folosit de inordineM
-        T inord[]; // vector ce contine pargurgerea in inordine
-        
-        bool operator==(Arbore<T> arbore2);
-        
-       friend void operator+ (T element,Arbore<T> &arbore1)
+        friend void operator+ (T element,Arbore<T> &arbore1)
        {
 
 	  arbore1+element;
  
 	   }
+		
+		T remove(node<T> *&p);
+        
+        void delnode(node<T>*&,T);
+        void afiseaza();
+        
+        void inorderM(node<T> *temp,int &size,T *inord);
+        void preorderM(node<T> *temp,int &size,T *preord);
+        
+        void inorder(node<T> *temp);
+        void postorder(node<T> *temp);
+        
+        
+        int size; //nr de noduri - folosit de inordineM/preordineM
+        T inord[];  // vector ce contine pargurgerea in inordine
+        T preord[]; // vector ce contine pargurgerea in preordine
+        
+        bool operator==(Arbore<T> arbore2);
+        
+       
 	   
 	   
 
@@ -223,7 +221,7 @@ void Arbore<T>::inorderM(node<T> *root,int &size,T *inord) //inordine iterativa 
 {
 	
 	size=0;
-	inord[size]={};
+	inord[size]={}; 
 
 // //debug garbage
 //	cout<<"\n";
@@ -264,6 +262,58 @@ void Arbore<T>::inorderM(node<T> *root,int &size,T *inord) //inordine iterativa 
 //	for (int i=0; i<=size; i++) cout <<inord[i];
 //	cout <<"\n";
 }
+
+
+
+template <class T>
+void Arbore<T>::preorderM(node<T> *root,int &size,T *preord)  //TODO cu parametri locali!
+{
+    
+    size=0;
+	inord[size]={};
+	node<T>* tmp, *current;
+	tmp = root;
+
+    while (tmp)
+    {
+        
+        if (tmp->left == NULL)
+        {
+        	size++;
+        	preord[size]=tmp->data;
+            //cout << tmp->data;
+            tmp = tmp->right;
+        }
+        else
+        {
+            
+            current = tmp->left;
+            while (current->right && current->right != tmp)
+                current = current->right;
+
+            
+            if (current->right == tmp)
+            {
+                current->right = NULL;
+                tmp = tmp->right;
+            }
+
+            
+            else
+            {
+            	size++;
+        		preord[size]=tmp->data;
+                //cout << tmp->data;
+                current->right = tmp;
+                tmp = tmp->left;
+            }
+        }
+    }
+    for (int i=1; i<=size; i++) cout <<preord[i];
+}
+
+
+
 
 
 
@@ -336,7 +386,7 @@ template <class T> T Arbore<T>::operator-(T element) //(Arbore - element)
     node<T> *nou;
     nou=root;
     delnode(nou,element);
-
+    return 0;
 }
 
 
@@ -363,6 +413,36 @@ for (int i=0;i<=arbore1.size;i++) *this+arbore1.inord[i];
 return *this;
 
 }
+
+
+//template <class T>
+//Arbore<T>& Arbore<T>:: operator= (const Arbore<T>& arbore1)
+//{
+//		Arbore<T> arboretemp;
+//			
+//		preorderM(arbore1.root,arbore1.size,arbore1.preord);
+//		arbore1.root-left=NULL;
+//		
+//	
+//}
+
+
+template <class T>
+Arbore<T>& Arbore<T>::  operator=(T const& element)
+{
+        	
+    New = new node<T>;
+    New->left = NULL;
+    New->right = NULL;
+    New->data = element;
+    root = New;
+    return *this;
+        	
+}
+
+
+
+
 
 
 template <class T>
@@ -394,34 +474,31 @@ bool Arbore<T>::operator==(Arbore<T> arbore2)
 //Arbore<T> Arbore<T>::  operator= (Arbore<T> arbore1) 
 //{
 //
-//inorderM(arbore1.root);
-//
-//Arbore <T> arbtemp;
-//for (int i=0;i<=size;i++)
-// *arbtemp+inord[i];
-//return *arbtemp;
 //
 //}
 
 
 
 //
-// to do (Cosmin)
-//Arbore1 - element TODO: segfault (acum la cazul cand se incearca eliminarea ultimului element);
-//Arbore1 + Arbore2 Done.
-//cheie + Arbore Done.   
-//Arbore1 - Arbore2 Done.
-//inserare/stergere cu contor TODO
+//TODO (Cosmin)
+//Arbore1 - element TO DO: segfault (acum la cazul cand se incearca eliminarea ultimului element);
+//inserare/stergere cu contor 
+
+
+
+//arbore1=arbore2 (constructor de copiere) 
+//constructor de initializare (directa): Arbore<int> = 5; 
+//
 //
 
 
 
 
 
-
+//Arbore1 = Arbore2 TODO constructor de copiere;
 
 //
-// todo (Dan) (editeaza aici)
+//TODO (Dan) (editeaza aici)
 //
 //==; <, <=, >, >= (operatorii de ordine întorc 1 (sau 0) conform ordonarii
 //lexicografice a sirurilor ordonate care rezulta prin parcurgerea în inordine a
