@@ -24,15 +24,19 @@ class Arbore
 //     Arbore<T> & operator= (Arbore<T> const & arb) 
 //     {
 //     
-//    TODO constructor de copiere
+//    TODO constructor de copiere arbore1=arbore2
+//         constructor de initializare, sa aiba sens initializarea directa
+//     Arbore<int> = 5;
 //	 
 //	 }
      
          
         Arbore<T> & operator= (T const& element)  
-		//constructor de conversie;
-		//sa aiba sens char Arbore1 = 'a';
-		//probabil ar trebui sa inlocuiasca create()
+		//asignare
+		//sa aiba sens 
+		//Arbore<char> Arbore1;
+		//Arbore1 = 'a';
+	
 		        
         {
         	
