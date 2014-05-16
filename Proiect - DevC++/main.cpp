@@ -59,6 +59,8 @@ int main()
    cout<<"\n";
    arb3=arb1+arb2;
    arb3.afiseaza();
+   
+   
 
 
 
@@ -71,9 +73,9 @@ int main()
 		char v6[] = {'a', 'b', '7'};  // delimitare cu ' pentru vectori de char
     arb6.create(v6[0]); //radacina este primul element
     for(unsigned int i = 1; i < sizeof(v6); i++) 
-    
-    
-		arb6+v6[i];  
+	arb6+v6[i];  
+	
+	
 cout<<"\n arb5: ";
 cout<<"\n";
    arb5.afiseaza();
@@ -81,7 +83,7 @@ cout<<"\n arb6: ";
 cout<<"\n";
    arb6.afiseaza(); 
     
-   arb4=arb5-arb6; 
+arb4=arb5-arb6; 
 cout<<"\n arb4 = arb5-arb6 = ";  
 cout<<"\n";
    arb4.afiseaza();
@@ -96,7 +98,7 @@ cout<<"\n";
 //cout << "\n initializare care cheama constructorul de initializare \n";
 //cout <<" \n int arb9 = 2; \n \n arb9 = \n";          
 //arb9.afiseaza(); 
-   
+//   
    
    
    arb7 = 'W'; 
@@ -134,9 +136,7 @@ cout<<"\n";
     cout << "_______________________" << endl;
    
    
-   
 
-   
     
     
     return 0;
