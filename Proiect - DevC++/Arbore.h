@@ -25,7 +25,7 @@ class Arbore
 //     {
 //     
 //    TODO constructor de copiere arbore1=arbore2
-//         constructor de initializare, sa aiba sens initializarea directa
+//    TODO constructor de initializare, sa aiba sens initializarea directa
 //     Arbore<int> = 5;
 //	 
 //	 }
