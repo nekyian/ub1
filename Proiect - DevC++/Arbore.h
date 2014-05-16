@@ -11,7 +11,6 @@ class Arbore
 {
 
 
-
     public:
     	node<T> *root,*New;    //was node *root,*New;
     	
