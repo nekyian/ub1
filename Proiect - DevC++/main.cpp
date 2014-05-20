@@ -1,4 +1,5 @@
 #include <iostream>
+//#include <vector>
 //#include <string> http://www.cplusplus.com/reference/string/
 #include "Arbore.h"
 using namespace std;
@@ -10,6 +11,7 @@ using namespace std;
 
 int main()
 {
+
 
     Arbore<char> arb1,arb2,arb3,arb4,arb5,arb6,arb7,arb8; // incercam cu char deocamdata fiind tip fundamental
 	char sters,opt;
@@ -23,11 +25,16 @@ int main()
 	   
     
     
-    char v2[]={'a', 'b', 'c', 'w','5'} ;  //arb22 pentru testare operator arbore+arbore
+//    char v2[]={'a', 'b', 'c', 'w','5'} ;  //arb22 pentru testare operator arbore+arbore
+//    arb2.create(v2[0]);                             //initializare radacina arb22
+//    for(unsigned int i = 1; i < sizeof(v2); i++) 
+//		arb2+v2[i];
+		
+		
+    char v2[]={'a', 'b', 'b', 'b','5'} ;  //arb22 pentru testare operator arbore+arbore
     arb2.create(v2[0]);                             //initializare radacina arb22
     for(unsigned int i = 1; i < sizeof(v2); i++) 
 		arb2+v2[i];
-		
 
     
     //decomenteaza pt. stergere  Arb2-cheie	
@@ -54,12 +61,12 @@ int main()
    cout<<"\n arb2: ";
    cout<<"\n";
    arb2.afiseaza();
-   cout<<"\n arb1+arb2 = ";
    cout<<"\n";
    arb3=arb1+arb2;
+   cout<<"\n arb3=arb1+arb2 :\n";
    arb3.afiseaza();
    
-   
+   // o cheie 'X' care apare de 5 ori in arbore se va afisa ca X{5}
 
 
 
@@ -91,6 +98,14 @@ cout<<"\n";
    char c='K';
    cout <<"\n "<<c<<" + arb4 = \n";
    c+arb4;  
+   arb4.afiseaza();
+   cout<<"\n";
+   c+arb4;
+   c+arb4;
+   cout << "\n arb4 in care "<<c<<" apare de 3 ori \n";
+   arb4.afiseaza();
+   arb4-c;
+   cout << "\n arb4 in care "<<c<<" apare de 2 ori \n";
    arb4.afiseaza();
    
 //Arbore<int> arb9 = 2;
