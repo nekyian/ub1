@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Nod.h"
-
 using namespace std;
 
 template <class T>
@@ -11,19 +10,44 @@ class Arbore
     	
         Arbore()
         {
-        	
             root = NULL;
             size=0;
-            
         }
 
-        Arbore<T> & operator= (T const& element);  
+		//constructor de conversie/initializare explicita
+		//
+		//Arbore <int> A = 2;
+		//
+
+		Arbore(T element)
+		{
+		New = new node<T>;
+    	New->left = NULL;
+    	New->right = NULL;
+    	New->data = element;
+    	root = New;
+		}
+		
+		
+		
+
 	    //asignare
-		//sa aiba sens 
-		//Arbore<char> Arbore1;
-		//Arbore1 = 'a';
+		//
+		//  Arbore<char> Arbore1;
+		//...
+		//  Arbore1 = 'a';
+		//
+        Arbore<T>& operator= (T const& element);  
+
 		         
-		//Arbore<T>& operator= (const Arbore<T>& arbore1); //const           
+        //asignare
+		// 
+		//  Arbore<char> Arbore1;
+		//  Arbore<char> Arbore2;
+		//...
+		//  Arbore2=Arbore1;
+		//        
+        Arbore<T>& operator= (Arbore<T> arbore1);
         
         Arbore <T> operator+ (Arbore<T> arbore1);
         Arbore <T> operator- (Arbore<T> arbore1);
@@ -164,7 +188,7 @@ void Arbore<T>::afiseaza() //deocamdata doar inordine()
 // TO DO: afisare gen ((a)(c)(e)) etc
 {
     if(root == NULL)
-        cout << "arborele nu este creat";
+        cout << "\n arborele nu este creat \n";
     else
     {
     	
@@ -293,8 +317,12 @@ void Arbore<T>::preorderM(node<T> *root,int &size,T *preord)  //TODO cu parametr
         
         if (tmp->left == NULL)
         {
+        	while (tmp->contor)   //incrementare si asignare preord[] cat timp contor>0
+        	{
         	size++;
         	preord[size]=tmp->data;
+        	tmp->contor--;
+        	}
             //cout << tmp->data;
             tmp = tmp->right;
         }
@@ -315,16 +343,24 @@ void Arbore<T>::preorderM(node<T> *root,int &size,T *preord)  //TODO cu parametr
             
             else
             {
-            	size++;
+            	while (tmp->contor)
+        		{
+        		size++;
         		preord[size]=tmp->data;
+        		tmp->contor--;
+        		}
                 //cout << tmp->data;
                 current->right = tmp;
                 tmp = tmp->left;
             }
         }
     }
-    for (int i=1; i<=size; i++) cout <<preord[i];
-}
+    
+    //debug 
+    cout <<"\n [asignare = intre arbori] debug preorderM: ";
+    for (int i=1; i<=size; i++) cout <<" "<<preord[i];
+    cout <<"\n";
+}	
 
 
 
@@ -422,16 +458,21 @@ return *this;
 }
 
 
-//template <class T>
-//Arbore<T>& Arbore<T>:: operator= (const Arbore<T>& arbore1)
-//{
-//		Arbore<T> arboretemp;
-//			
-//		preorderM(arbore1.root,arbore1.size,arbore1.preord);
-//		arbore1.root-left=NULL;
-//		
-//	
-//}
+template <class T>
+Arbore<T>& Arbore<T>:: operator= (Arbore<T> arbore1)
+{
+// pentru const arbore1:
+//		int psize=0;
+//		T ptemp[];
+
+		preorderM(arbore1.root,arbore1.size,arbore1.preord);	
+		this->create(arbore1.preord[1]);
+	    for(int i=2;i<=arbore1.size;i++)
+	    	*this+arbore1.preord[i];
+		return *this;	
+		
+				
+}
 
 
 template <class T>
@@ -444,6 +485,7 @@ Arbore<T>& Arbore<T>::  operator=(T const& element)
     New->data = element;
     root = New;
     return *this;
+    
         	
 }
 
