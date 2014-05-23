@@ -70,7 +70,7 @@ class Arbore
         void delnode(node<T>*&,T);
         void afiseaza();
         
-        void deltree(node<T>* nod);
+//        void deltree(node<T>* nod);
         
         void inorderM(node<T> *temp,int &size,T *inord);
         void preorderM(node<T> *temp,int &size,T *preord);
@@ -461,8 +461,8 @@ return *this;
 
 
 
-template <class T>
-void Arbore<T>::deltree(node<T>* nod)
+/* template <class T>
+void Arbore<T>::deltree(node<T>* nod) 
 {
 	if(nod != NULL)
 	{
@@ -471,7 +471,7 @@ void Arbore<T>::deltree(node<T>* nod)
 		delete nod;
 	}
 }
-
+*/
 
 template <class T>
 Arbore<T>& Arbore<T>:: operator= (Arbore<T>* arbore1)
@@ -544,8 +544,6 @@ bool Arbore<T>::operator==(Arbore<T> arbore2)
 //
 //TODO (Cosmin)
 //(Arbore1 - element) de reparat: segfault uneori la eliminarea ultimului element;
-//operator de asignare: A=B;
-//constructor de initializare: Arbore<int> A = 5; 
 //constructor de copiere: Arbore<int> A = B;
 //
 
