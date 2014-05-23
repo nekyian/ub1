@@ -62,40 +62,51 @@ int main()
    cout<<"\n";
    arb2.afiseaza();
    cout<<"\n";
-   arb3=arb1+arb2;
-   cout<<"\n arb3=arb1+arb2 :\n";
-   arb3.afiseaza();
+//   arb3=arb1+arb2;
+//   cout<<"\n arb3=arb1+arb2 :\n";
+//   arb3.afiseaza();
    
    // o cheie 'X' care apare de 5 ori in arbore se va afisa ca X{5}
 
 
+//test Arbore1=Arbore2
+
+//arb3=arb2;
+//cout<<"\n afisare arb3 dupa arb3=arb2: \n";
+//arb3.afiseaza();
+
+
+
 
  //testare arb5-arb6    
-    char v5[] = {'d', 'e', 'f', 'a','b','c','7'};  // delimitare cu ' pentru vectori de char
-    arb5.create(v5[0]); //radacina este primul element
-    for(unsigned int i = 1; i < sizeof(v5); i++) 
-		arb5+v5[i];
-			
-		char v6[] = {'a', 'b', '7'};  // delimitare cu ' pentru vectori de char
-    arb6.create(v6[0]); //radacina este primul element
-    for(unsigned int i = 1; i < sizeof(v6); i++) 
-	arb6+v6[i];  
-	
-	
-cout<<"\n arb5: ";
-cout<<"\n";
-   arb5.afiseaza();
-cout<<"\n arb6: ";
-cout<<"\n";
-   arb6.afiseaza(); 
-    
-arb4=arb5-arb6; 
-cout<<"\n arb4 = arb5-arb6 = ";  
-cout<<"\n";
-   arb4.afiseaza();
-   
-      
-   char c='K';
+//    char v5[] = {'d', 'e', 'f', 'a','b','c','7'};  // delimitare cu ' pentru vectori de char
+//    arb5.create(v5[0]); //radacina este primul element
+//    for(unsigned int i = 1; i < sizeof(v5); i++) 
+//		arb5+v5[i];
+//			
+//		char v6[] = {'a', 'b', '7'};  // delimitare cu ' pentru vectori de char
+//    arb6.create(v6[0]); //radacina este primul element
+//    for(unsigned int i = 1; i < sizeof(v6); i++) 
+//	arb6+v6[i];  
+//	
+//	
+//cout<<"\n arb5: ";
+//cout<<"\n";
+//   arb5.afiseaza();
+//cout<<"\n arb6: ";
+//cout<<"\n";
+//   arb6.afiseaza(); 
+//    
+//arb4=arb5-arb6; 
+//cout<<"\n arb4 = arb5-arb6 = ";  
+//cout<<"\n";
+//   arb4.afiseaza();
+//   
+ 
+ 
+   cout << "\n arb4=arb1 \n";
+   arb4=arb1;  
+   char c='k';
    cout <<"\n "<<c<<" + arb4 = \n";
    c+arb4;  
    arb4.afiseaza();
@@ -108,17 +119,20 @@ cout<<"\n";
    cout << "\n arb4 in care "<<c<<" apare de 2 ori \n";
    arb4.afiseaza();
    
-//Arbore<int> arb9 = 2;
-//cout << "\n initializare care cheama constructorul de initializare \n";
-//cout <<" \n int arb9 = 2; \n \n arb9 = \n";          
-//arb9.afiseaza(); 
-//   
+   
+Arbore<int> arb9 = 7;
+cout << "\n initializare care cheama constructorul de initializare \n";
+cout <<" \n int arb9 = 7; \n \n arb9 = \n";          
+arb9.afiseaza(); 
+
+//Arbore<int> arb91 = arb9;
+//arb91.afiseaza();
    
    
-   arb7 = 'W'; 
-   cout << "\n initializare care cheama operatorul de asignare  \n";
-   cout << "\n char arb7; \n arb7 = 'W'; \n \n arb7 = \n";          
-   arb7.afiseaza(); 
+  arb7 = 'W'; 
+  cout << "\n initializare care cheama operatorul de asignare  \n";
+  cout << "\n char arb7; \n arb7 = 'W'; \n \n arb7 = \n";          
+  arb7.afiseaza(); 
  
  
 //   cout << "\n arb8 = arb4 \n \n arb8 = \n";
