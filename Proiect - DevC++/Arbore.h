@@ -47,7 +47,7 @@ class Arbore
 		//...
 		//  Arbore2=Arbore1;
 		//        
-        Arbore<T>& operator= (Arbore<T> arbore1);
+        Arbore<T>& operator= (Arbore<T>* arbore1);
         
         Arbore <T> operator+ (Arbore<T> arbore1);
         Arbore <T> operator- (Arbore<T> arbore1);
@@ -69,6 +69,8 @@ class Arbore
         
         void delnode(node<T>*&,T);
         void afiseaza();
+        
+        void deltree(node<T>* nod);
         
         void inorderM(node<T> *temp,int &size,T *inord);
         void preorderM(node<T> *temp,int &size,T *preord);
@@ -458,19 +460,38 @@ return *this;
 }
 
 
+
 template <class T>
-Arbore<T>& Arbore<T>:: operator= (Arbore<T> arbore1)
+void Arbore<T>::deltree(node<T>* nod)
+{
+	if(nod != NULL)
+	{
+		deltree(nod->left);
+		deltree(nod->right);
+		delete nod;
+	}
+}
+
+
+template <class T>
+Arbore<T>& Arbore<T>:: operator= (Arbore<T>* arbore1)
 {
 // pentru const arbore1:
 //		int psize=0;
 //		T ptemp[];
-
+//		deltree(root);
 		preorderM(arbore1.root,arbore1.size,arbore1.preord);	
-		this->create(arbore1.preord[1]);
-	    for(int i=2;i<=arbore1.size;i++)
-	    	*this+arbore1.preord[i];
-		return *this;	
-		
+//		this->create(arbore1.preord[1]);
+//		cout <<root->data;
+//	    for(int i=2;i<=arbore1.size;i++)
+//	    	*this+arbore1.preord[i];
+//		return *this;	
+		Arbore <T> arbtemp;
+		arbtemp.create(arbore1.preord[1]);
+		for(int i=2;i<=arbore1.size;i++)
+	    	arbtemp+arbore1.preord[i];
+	    arbtemp.afiseaza();
+	    return *arbtemp;
 				
 }
 
