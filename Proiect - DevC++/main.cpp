@@ -62,9 +62,10 @@ int main()
    cout<<"\n";
    arb2.afiseaza();
    cout<<"\n";
-//   arb3=arb1+arb2;
-//   cout<<"\n arb3=arb1+arb2 :\n";
-//   arb3.afiseaza();
+   arb3=arb1+arb2;
+   cout<<"\n arb3=arb1+arb2 \n";
+   cout<<"\n arb3=\n";
+   arb3.afiseaza();
    
    // o cheie 'X' care apare de 5 ori in arbore se va afisa ca X{5}
 
@@ -79,33 +80,36 @@ int main()
 
 
  //testare arb5-arb6    
-//    char v5[] = {'d', 'e', 'f', 'a','b','c','7'};  // delimitare cu ' pentru vectori de char
-//    arb5.create(v5[0]); //radacina este primul element
-//    for(unsigned int i = 1; i < sizeof(v5); i++) 
-//		arb5+v5[i];
-//			
-//		char v6[] = {'a', 'b', '7'};  // delimitare cu ' pentru vectori de char
-//    arb6.create(v6[0]); //radacina este primul element
-//    for(unsigned int i = 1; i < sizeof(v6); i++) 
-//	arb6+v6[i];  
-//	
-//	
-//cout<<"\n arb5: ";
-//cout<<"\n";
-//   arb5.afiseaza();
-//cout<<"\n arb6: ";
-//cout<<"\n";
-//   arb6.afiseaza(); 
-//    
-//arb4=arb5-arb6; 
-//cout<<"\n arb4 = arb5-arb6 = ";  
-//cout<<"\n";
-//   arb4.afiseaza();
-//   
- 
+    char v5[] = {'d', 'e', 'f', 'a','b','c','7'};  // delimitare cu ' pentru vectori de char
+    arb5.create(v5[0]); //radacina este primul element
+    for(unsigned int i = 1; i < sizeof(v5); i++) 
+		arb5+v5[i];
+			
+		char v6[] = {'a', 'b', '7'};  // delimitare cu ' pentru vectori de char
+    arb6.create(v6[0]); //radacina este primul element
+    for(unsigned int i = 1; i < sizeof(v6); i++) 
+	arb6+v6[i];  
+	
+	
+cout<<"\n arb5: ";
+cout<<"\n";
+   arb5.afiseaza();
+cout<<"\n arb6: ";
+cout<<"\n";
+   arb6.afiseaza(); 
+    
+arb4=arb5-arb6; 
+cout<<"\n arb4 = arb5-arb6 = ";  
+cout<<"\n";
+   arb4.afiseaza();
+   
+ cout<<"\n arb1= ";
+ arb1.afiseaza();
  
    cout << "\n arb4=arb1 \n";
-   arb4=arb1;  
+   arb4=arb1; 
+   cout<<"\n arb4= ";
+   arb4.afiseaza();
    char c='k';
    cout <<"\n "<<c<<" + arb4 = \n";
    c+arb4;  
