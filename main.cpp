@@ -10,7 +10,7 @@ int main()
 {
 
 
-    Arbore<char> arb1,arb2,arb3,arb4,arb5,arb6,arb7,arb8; // incercam cu char deocamdata fiind tip fundamental
+    Arbore<char> arb1,arb2,arb3,arb4,arb5,arb6,arb7,arb8; //// incercam cu char deocamdata fiind tip fundamental
 	char sters,opt;
 
 	char v1[] = {'d', 'e', 'f', 'a','b','c','7'};  // delimitare cu ' pentru vectori de char
