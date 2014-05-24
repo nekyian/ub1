@@ -16,7 +16,7 @@ class Arbore
         }
 
 		//constructor de conversie/initializare explicita
-		//
+
 		//Arbore <int> A = 2;
 		//
 
