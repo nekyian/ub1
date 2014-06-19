@@ -578,11 +578,9 @@ bool Arbore<T>::operator==(Arbore<T> arbore2)
 //
 //TODO (Cosmin)
 //(Arbore1 - element) de reparat: segfault uneori la eliminarea ultimului element;
-//operator de asignare: A=B;
 //constructor de copiere: Arbore<int> A = B;  
-//^ambele cu deep copy
-//
-//simulare element neutru: pentru doi arbori A si B (cu B vid): A+B=? A-A=?
+
+//   (simulare element neutru: pentru doi arbori A si B (cu B vid): A+B=? A-A=?)
 
 
 
@@ -602,12 +600,7 @@ bool Arbore<T>::operator==(Arbore<T> arbore2)
 //arbore.h = arbore.h (cu #IFNDEF/#DEFINE/#ENDIF si declaratii) 
 //                  + arbore.cpp cu definitii  
 //meniu principal
-//
-//"Se vor da exemple de creare şi utilizare de obiecte pentru
-// diferite tipuri ale numărătorului şi numitorului"
-//=>optiune in meniu pentru creare a doi arbori cu elemente cu elemente aleatoare de un anumit tip
-//
-//membri data sa fie privati;
+//membri data sa fie privati
 //
 
 
