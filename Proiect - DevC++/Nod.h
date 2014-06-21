@@ -1,3 +1,17 @@
+/*************************************************************
+       Stativa Dan
+       Negrila Cosmin
+       
+       Proiect POO Tema 8 (arbori binari)
+       
+       Anul 1 ID
+
+*************************************************************/
+
+
+
+
+
 template <class T> class node  
 		{
 			public:
