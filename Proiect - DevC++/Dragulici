@@ -1,6 +1,0 @@
-
--arbore.h  = (arbore.h doar cu #IFNDEF/#DEFINE/#ENDIF si declaratia metodelor) + (arbore.cpp cu definitia metodelor);
--membri data sa fie privati;
--constructor in loc de create(); //done oarecum
--la orice folosire a operatorului de dereferentiere a->b ne asiguram ca a nu e NULL;
--size si inord ca parametru la inorderM //dar pana la urma a zis ca e ok cum e acum;
