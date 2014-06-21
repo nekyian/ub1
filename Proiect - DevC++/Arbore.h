@@ -531,7 +531,7 @@ bool Arbore<T>::operator==(Arbore<T> arbore2)
     inorderM(arbore2.root,arbore2.size,arbore2.inord);
 
     //in primul rand verificam daca arborii au aceeasi dimensiune
-    cout << this->size << "==" << arbore2.size << endl;
+//    cout << this->size << "==" << arbore2.size << endl;
     if(this->size != arbore2.size)
         return false;
 
@@ -547,18 +547,29 @@ bool Arbore<T>::operator==(Arbore<T> arbore2)
 template <class T>
 bool Arbore<T>::operator>(Arbore<T> arbore2)
 {
+	int equal;
+
     //parcugem cei 2 arbori si incarcam lista inord pentru fiecare
    inorderM(this->root,this->size,this->inord);
    inorderM(arbore2.root,arbore2.size,arbore2.inord);
 
     //in primul rand verificam daca arborii au aceeasi dimensiune
-    cout << this->size << "==" << arbore2.size << endl;
-    if(this->size != arbore2.size)
-        return false;
+//    cout << this->size << "==" << arbore2.size << endl;
+    if(this->size > arbore2.size)
+        return true;
+    else if(this->size < arbore2.size)
+    	return false;
 
     for(int i=0; i < this->size; i++)
         if(this->inord[i] < arbore2.inord[i])
             return false;
+        else if(this->inord[i] == arbore2.inord[i])
+        	equal = 1;
+
+    if(equal == 1) {
+    	cout << "arborii sunt egali\n";
+    	return false;
+    }
 
     return true;
 }
@@ -567,18 +578,29 @@ bool Arbore<T>::operator>(Arbore<T> arbore2)
 template <class T>
 bool Arbore<T>::operator<(Arbore<T> arbore2)
 {
+	int equal;
+
     //parcugem cei 2 arbori si incarcam lista inord pentru fiecare
     inorderM(this->root,this->size,this->inord);
     inorderM(arbore2.root,arbore2.size,arbore2.inord);
 
     //in primul rand verificam daca arborii au aceeasi dimensiune
-    cout << this->size << "==" << arbore2.size << endl;
-    if(this->size != arbore2.size)
-        return false;
+//    cout << this->size << "==" << arbore2.size << endl;
+    if(this->size < arbore2.size)
+        return true;
+    else if(this->size > arbore2.size)
+    	return false;
 
     for(int i=0; i < this->size; i++)
         if(this->inord[i] > arbore2.inord[i])
             return false;
+	else if(this->inord[i] == arbore2.inord[i])
+				equal = 1;
+
+    if(equal == 1) {
+    	cout << "arborii sunt egali\n";
+    	return false;
+    }
 
     return true;
 }

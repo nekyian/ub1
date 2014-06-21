@@ -153,8 +153,26 @@ arb9.afiseaza();
     //cout << "------------------" << endl;
     cout << "arb2: ";
     arby.afiseaza();
-    //cout << "------------------" << endl;
-    cout << (arbx==arby) << endl;
+    cout << "------------------" << endl;
+    cout << (arbx == arby) << endl;
+
+    cout << "_______________________" << endl;
+        cout << "arb1: ";
+        arbx1.afiseaza();
+        //cout << "------------------" << endl;
+        cout << "arb2: ";
+        arby1.afiseaza();
+        cout << "------------------" << endl;
+    cout << (arbx1 > arby1) << endl;
+
+    cout << "_______________________" << endl;
+        cout << "arb1: ";
+        arbx2.afiseaza();
+        //cout << "------------------" << endl;
+        cout << "arb2: ";
+        arby2.afiseaza();
+        cout << "------------------" << endl;
+    cout << (arbx2 > arby2) << endl;
 
     cout << "_______________________" << endl;
     
