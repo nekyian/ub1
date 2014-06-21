@@ -287,7 +287,8 @@ void Arbore<T>::inorderM(node<T> *root,int &size,T *inord)
 {
 
     size=0;
-    inord[size]= {};
+    //inord[size]= {};
+    inord= {};
     node<T>* current,*pre;
     current=root;
 
