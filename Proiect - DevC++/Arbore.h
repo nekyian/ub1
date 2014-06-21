@@ -1,3 +1,17 @@
+/*************************************************************
+       Stativa Dan
+       Negrila Cosmin
+       
+       Proiect POO Tema 8 (arbori binari)
+       
+       Anul 1 ID
+
+*************************************************************/
+
+
+
+
+
 #include <iostream>
 #include "Nod.h"
 using namespace std;
@@ -6,9 +20,9 @@ template <class T>
 class Arbore
 {
 public:
-    node<T> *root,*New;    //was node *root,*New;
+    node<T> *root,*New;    
 
-    Arbore() //de completat
+    Arbore() 
     {
         root = NULL;
         size=0;
@@ -65,20 +79,6 @@ public:
 
     }
 
-//////   varianta alternativa//
-//////
-//////  Arbore& operator+=(const Arbore& arbore1)
-//////  {
-//////    //...
-//////  }
-//////
-//////
-//////  inline X operator+(Arbore<T> arbore1, const Arbore<T>& arbore2)
-//////  {
-//////  arbore1 += arbore2;
-//////  return arbore1;
-//////  }
-
     T remove(node<T> *&p);
 
     void delnode(node<T>*&,T);
@@ -101,6 +101,8 @@ public:
     T preord[]; // vector ce contine pargurgerea in preordine
 
     bool operator==(Arbore<T> arbore2);
+    bool operator> (Arbore<T> arbore2);
+    bool operator< (Arbore<T> arbore2);
 
 
 };
@@ -108,8 +110,6 @@ public:
 
 
 template <class T>
-//void Arbore<T>::create()
-//void Arbore<T>::create(T const& element)
 void Arbore<T>::create(T element)
 
 //modificata (deocamdata) pentru testare sa preia direct v[0] ca radacina. in varianta finala vom citi pe rand
@@ -147,12 +147,9 @@ void Arbore<T>::operator+(T const& element)
     New->data = element;
     New->left = NULL;
     New->right = NULL;
-    //cout << " \n Am creeat un nod nou:\ndata: " << element << endl;
-    // inseram Nodul nou creat in Arborele principal
+  //  cout << " \n Am creeat un nod nou:\ndata: " << element << endl;
+  //  inseram Nodul nou creat in Arborele principal
     insert(root, New);
-
-
-
 }
 
 template <class T>
@@ -162,8 +159,7 @@ void Arbore<T>::insert(node<T> *root, node<T> *New)
     {
         root->contor++;
         //daca cheia deja exista se incrementeaza contorul si atat.
-        //
-        //cout<<"["<<root->contor<<"]";
+        
     }
 
 
@@ -255,7 +251,7 @@ bool Arbore<T>::caut(node<T> *temp, T element)
     if(temp != NULL)
     {
         caut(temp->left,element);
-        if (temp->data==element) i++; //i+=temp->contor; todo: returnare contor;
+        if (temp->data==element) i++; 
         caut(temp->right,element);
     }
     return (i==0);
@@ -265,6 +261,26 @@ bool Arbore<T>::caut(node<T> *temp, T element)
 
 
 //inordine iterativa pentru facilitarea inserarii elementelor in inord[]
+//algoritmul lui Morris
+//O(NlogN) timp and O(1) spatiu
+/*
+1. nodul curent = radacina.
+2. daca current nu e NULL do
+
+{
+2.a. daca current nu are copil stang, afiseaza current , seteaza current ca fiind copil dreapta si repeta 2.
+2.b. altfel se pozitioneaza pe cel mai din dreapta copil al nodului din stanga al lui current.
+2.b.a. daca acesta este NULL, atunci se face legatura cu curent and si se seteaza curent ca 
+copil stang al lui curent si repeata 2.
+2.b.b. altfel copilul drept =NULL . afiseaza current. seteaza current ca copil dreapta al lui current  repeta 2.
+}
+
+similar pentru preorderm()
+*/
+
+
+
+
 template <class T>
 void Arbore<T>::inorderM(node<T> *root,int &size,T *inord)
 
@@ -272,14 +288,6 @@ void Arbore<T>::inorderM(node<T> *root,int &size,T *inord)
 
     size=0;
     inord[size]= {};
-
-
-// //debug garbage
-//	cout<<"\n debug inorderM --------------------";
-//	cout<<"size inainte inordineM este: "<<size<<"\n";
-//	cout <<"\n inord inainte de inordineM este: "<<"\n";
-//	for (int i=0; i<=size; i++) cout <<inord[i];
-//	cout<<"\n debug inorderM --------------------";
     node<T>* current,*pre;
     current=root;
 
@@ -290,7 +298,7 @@ void Arbore<T>::inorderM(node<T> *root,int &size,T *inord)
         {
 
 
-            //cout<<"\n "<<current->data<<" cu count= ["<<current->contor<<"]\n";//
+           
 
             while (current->contor)
             {
@@ -315,9 +323,6 @@ void Arbore<T>::inorderM(node<T> *root,int &size,T *inord)
             {
                 pre->right=NULL;
 
-                //    cout<<"\n "<<current->data<<" cu count= ["<<current->contor<<"]\n";//
-
-
                 while (current->contor)
                 {
                     size++;                          //incrementare si asignare inord[] cat timp contor>0
@@ -329,18 +334,13 @@ void Arbore<T>::inorderM(node<T> *root,int &size,T *inord)
             }
         }
     }
-// //debug garbage
-//  cout<<"\n debug inorderM --------------------";
-//	cout<<"size dupa inordineM este: "<<size<<"\n";
-//	cout <<"\n inord dupa de inordineM este: "<<"\n";
-//	for (int i=0; i<=size; i++) cout <<inord[i];
-//	cout<<"\n debug inorderM --------------------";
+
 }
 
 
 
 template <class T>
-void Arbore<T>::preorderM(node<T> *root,int &size,T *preord)  //TODO cu parametri locali
+void Arbore<T>::preorderM(node<T> *root,int &size,T *preord)  
 {
 
     size=0;
@@ -413,7 +413,7 @@ void Arbore<T>::postorder(node<T> *temp)
 }
 
 
-// TO DO segfault la ultimul element,cand stergem ultimul element
+
 template <class T> void Arbore<T>::delnode(node<T>*& root,T element)
 {
     node<T> *tmp;
@@ -459,7 +459,7 @@ template <class T> T Arbore<T>::remove(node<T> *&p)
 
 
 
-//to do: parametrul
+
 template <class T> T Arbore<T>::operator- (T element) //(Arbore - element)
 
 {
@@ -480,7 +480,7 @@ Arbore<T> Arbore<T>::  operator- (Arbore<T> arbore1)
     //arbore1.inord[] contine parcurgerea in inordine
     for (int i=1; i<=arbore1.size; i++) *this-arbore1.inord[i];  //arbore1.size=nr de noduri
     return *this;
-
+    
 }
 
 template <class T>
@@ -490,36 +490,14 @@ Arbore<T> Arbore<T>::  operator+ (Arbore<T> arbore1)
     inorderM(arbore1.root,arbore1.size,arbore1.inord);
     for (int i=0; i<=arbore1.size; i++) *this+arbore1.inord[i];
     return *this;
+    
 
 }
-
-
-
-//template <class T>
-//void Arbore<T>::deltree(node<T>* nod)
-//{
-//	if(nod != NULL)
-//	{
-//		deltree(nod->left);
-//		deltree(nod->right);
-//		delete nod;
-//	}
-//}
-
 
 template <class T>
 Arbore<T>& Arbore<T>:: operator= (Arbore<T>* arbore1)
 {
-// pentru const arbore1:
-//		int psize=0;
-//		T ptemp[];
-//		deltree(root);
     preorderM(arbore1.root,arbore1.size,arbore1.preord);
-//		this->create(arbore1.preord[1]);
-//		cout <<root->data;
-//	    for(int i=2;i<=arbore1.size;i++)
-//	    	*this+arbore1.preord[i];
-//		return *this;
     Arbore <T> arbtemp;
     arbtemp.create(arbore1.preord[1]);
     for(int i=2; i<=arbore1.size; i++)
@@ -566,42 +544,48 @@ bool Arbore<T>::operator==(Arbore<T> arbore2)
 
 
 
-//template <class T>
-//Arbore<T> Arbore<T>::  operator= (Arbore<T> arbore1)
-//{
-//
-//
-//}
+template <class T>
+bool Arbore<T>::operator>(Arbore<T> arbore2)
+{
+    //parcugem cei 2 arbori si incarcam lista inord pentru fiecare
+   inorderM(this->root,this->size,this->inord);
+   inorderM(arbore2.root,arbore2.size,arbore2.inord);
+
+    //in primul rand verificam daca arborii au aceeasi dimensiune
+    cout << this->size << "==" << arbore2.size << endl;
+    if(this->size != arbore2.size)
+        return false;
+
+    for(int i=0; i < this->size; i++)
+        if(this->inord[i] < arbore2.inord[i])
+            return false;
+
+    return true;
+}
+
+
+template <class T>
+bool Arbore<T>::operator<(Arbore<T> arbore2)
+{
+    //parcugem cei 2 arbori si incarcam lista inord pentru fiecare
+    inorderM(this->root,this->size,this->inord);
+    inorderM(arbore2.root,arbore2.size,arbore2.inord);
+
+    //in primul rand verificam daca arborii au aceeasi dimensiune
+    cout << this->size << "==" << arbore2.size << endl;
+    if(this->size != arbore2.size)
+        return false;
+
+    for(int i=0; i < this->size; i++)
+        if(this->inord[i] > arbore2.inord[i])
+            return false;
+
+    return true;
+}
 
 
 
-//
-//TODO (Cosmin)
-//(Arbore1 - element) de reparat: segfault uneori la eliminarea ultimului element;
-//constructor de copiere: Arbore<int> A = B;  
 
-//   (simulare element neutru: pentru doi arbori A si B (cu B vid): A+B=? A-A=?)
-
-
-
-
-
-//
-//TODO (Dan) (editeaza aici)
-//
-// <, <=, >, >= (operatorii de ordine întorc 1 (sau 0) conform ordonarii
-//lexicografice a sirurilor ordonate care rezulta prin parcurgerea în inordine a
-//operanzilor, cu repetarea fiecarei chei conform contorului);
-//
-
-
-
-//TODO general
-//arbore.h = arbore.h (cu #IFNDEF/#DEFINE/#ENDIF si declaratii) 
-//                  + arbore.cpp cu definitii  
-//meniu principal
-//membri data sa fie privati
-//
 
 
 
