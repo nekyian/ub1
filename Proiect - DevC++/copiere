@@ -1,0 +1,27 @@
+//Arbore::Arbore(const Arbore &copytree):root(NULL)
+//{
+//    root = copytree.root;
+//    copyTree(root);
+//}
+//
+//Arbore::node* Arbore::copyTree(node* other)
+//{
+//    
+//    if (other == NULL)
+//    {
+//        return NULL;
+//    }
+//
+//    node* newNode = new node;
+//
+//    if (other ->data == "")
+//    {
+//        newNode ->data = "";
+//    }
+//
+//    newNode->left = copyTree(other->left);
+//    newNode->right = copyTree(other->right); 
+//
+//    return newNode;
+//}
+
