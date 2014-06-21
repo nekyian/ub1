@@ -127,7 +127,7 @@ arb9.afiseaza();
 
 
 
-    Arbore<int> arbx, arby,arbx1,arby1,arbx2,arby2;
+    Arbore<int> arbx, arby,arbx1,arby1,arbx2,arby2,arbx3,arby3;
     int vx[5] = {1, 2, 3, 4, 5};
     
     arbx.create(vx[0]);
@@ -136,6 +136,9 @@ arb9.afiseaza();
     arby1.create(vx[0]);
     arbx2.create(vx[0]);
     arby2.create(vx[0]);
+    arbx3.create(vx[0]);
+    arby3.create(vx[0]);
+
     for(unsigned int i = 1; i < (sizeof(vx) / sizeof(int)); i++)
     {
         arbx + vx[i];
@@ -144,35 +147,50 @@ arb9.afiseaza();
         arby1 + vx[i];
         arbx2 + vx[i];
         arby2 + vx[i];
+        arbx3 + vx[i];
+        arby3 + vx[i];
     }
     arbx + 6;
 
     cout << "_______________________" << endl;
-    cout << "arb1: ";
+    cout << "arbx: ";
     arbx.afiseaza();
     //cout << "------------------" << endl;
-    cout << "arb2: ";
+    cout << "arby: ";
     arby.afiseaza();
     cout << "------------------" << endl;
-    cout << (arbx == arby) << endl;
+    cout << "arbx == arby => " << (arbx == arby) << endl;
 
+    arbx1 + 6;
     cout << "_______________________" << endl;
-        cout << "arb1: ";
+        cout << "arbx1: ";
         arbx1.afiseaza();
         //cout << "------------------" << endl;
-        cout << "arb2: ";
+        cout << "arby1: ";
         arby1.afiseaza();
         cout << "------------------" << endl;
-    cout << (arbx1 > arby1) << endl;
+    cout << "arbx1 > arby1 => " << (arbx1 > arby1) << endl;
 
+    arbx2 + 6;
     cout << "_______________________" << endl;
-        cout << "arb1: ";
+        cout << "arbx2: ";
         arbx2.afiseaza();
         //cout << "------------------" << endl;
-        cout << "arb2: ";
+        cout << "arby2: ";
         arby2.afiseaza();
         cout << "------------------" << endl;
-    cout << (arbx2 > arby2) << endl;
+    cout << "arbx2 < arby2 => " << (arbx2 < arby2) << endl;
+
+    arby3 + 6;
+    cout << "_______________________" << endl;
+        cout << "arbx3: ";
+        arbx3.afiseaza();
+        //cout << "------------------" << endl;
+        cout << "arby3: ";
+        arby3.afiseaza();
+        cout << "------------------" << endl;
+    cout << "arbx3 < arby3 => " << (arbx3 < arby3) << endl;
+
 
     cout << "_______________________" << endl;
     
@@ -189,7 +207,7 @@ arb9.afiseaza();
 //    cout << (arbx>arby) << endl;
 //
 //    cout << "_______________________" << endl;
-//    
+//
 //    arby2 + 6;
 //    arby2-5;
 //
